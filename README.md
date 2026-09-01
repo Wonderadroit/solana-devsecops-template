@@ -1,192 +1,84 @@
-# 🛡️ Multi-Chain Web3 DevSecOps Bug Bounty Template
+# Multi-Chain Web3 DevSecOps Template
 
-**Professional-grade automated security analysis pipeline for multi-chain smart contract bug bounty hunting**
+A reusable security-analysis template for smart-contract projects spanning **Ethereum/Solidity** and **Solana/Rust**.
 
-This template provides a comprehensive DevSecOps pipeline specifically designed for finding vulnerabilities in **Ethereum (Solidity)** and **Solana (Rust)** smart contracts on platforms like **Code4rena**, **Immunefi**, **Sherlock**, and **HackerOne**.
+> Built for security-focused development, automated checks, and repeatable audit workflows.
 
----
+## What it provides
 
-## 🎯 **Multi-Chain Bug Detection Arsenal**
+- Automated security-analysis workflows
+- Static analysis and linting integrations
+- Secret-detection support
+- Fuzzing and property-based testing hooks
+- SARIF-compatible security reporting
+- Configurable analysis depth and target selection
+- Documentation for local and CI-based workflows
 
-### 🔍 **Ethereum/Solidity Analysis**
-- **Slither** - 90+ vulnerability detectors (reentrancy, access control, etc.)
-- **Mythril** - Deep symbolic execution for complex bugs
-- **Hardhat** - Compilation and testing framework
+## Tooling
 
-### � **Solana/Rust Analysis**  
-- **Cargo Audit** - Rust security vulnerability database
-- **Clippy** - Advanced Rust linting and bug detection
-- **Anchor** - Solana framework testing and analysis
+| Area | Tools / technologies |
+|---|---|
+| Ethereum | Solidity, Slither, Mythril, Hardhat |
+| Solana | Rust, Anchor, Cargo Audit, Clippy |
+| Security | Semgrep, Echidna, Gitleaks |
+| Automation | GitHub Actions |
 
-### 🔒 **Enhanced Security Tools**
-- **Semgrep** - Custom security rule patterns (multi-language)
-- **Echidna** - Property-based fuzzing for edge cases  
-- **Gas Analysis** - DoS vector detection and optimization
+## Repository structure
 
----
-
-## 🚀 **Quick Start**
-
-1. **Setup your hunting environment:**
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/web3-devsecops-audit-template.git
-   cd web3-devsecops-audit-template
-   ```
-
-2. **Add target contracts:**
-   ```bash
-   # Ethereum/Solidity contracts:
-   contracts/     # Primary location for .sol files
-   src/          # Alternative location
-   
-   # Solana/Rust programs:
-   programs/     # Anchor programs
-   src/lib.rs    # Rust program files
-   Cargo.toml    # Rust project configuration
-   Anchor.toml   # Anchor workspace configuration
-   ```
-
-3. **Trigger analysis:**
-   - **Automatic**: Push code or create PR
-   - **Manual**: `gh workflow run devsecops.yml`
-   - **Deep scan**: `gh workflow run security-scan.yml`
-
-4. **Harvest the bugs:**
-   - Download reports from GitHub Actions artifacts
-   - Review `SECURITY_SUMMARY.md` for critical findings
-   - Get detailed analysis in individual tool reports
-
----
-
-## 🏆 **Multi-Chain Bug Classes Detected**
-
-| 🐛 Vulnerability | 🔧 Detection Tools | 🌐 Chain | ⚡ Severity | 💰 Bounty Potential |
-|-----------------|-------------------|----------|------------|-------------------|
-| **Reentrancy** | Slither + Mythril | Ethereum | Critical | $10K-$100K+ |
-| **Integer Overflow** | Mythril + Cargo Audit | Both | High | $5K-$50K |
-| **Access Control** | Slither + Clippy | Both | High | $5K-$25K |
-| **Unchecked Calls** | Pattern matching | Ethereum | Medium | $1K-$10K |
-| **MEV/Front-running** | Mythril + Analysis | Ethereum | Medium | $2K-$15K |
-| **PDA Vulnerabilities** | Cargo Audit + Clippy | Solana | High | $5K-$30K |
-| **Account Validation** | Anchor + Custom | Solana | High | $3K-$20K |
-| **Arithmetic Errors** | Clippy + Semgrep | Solana | Medium | $1K-$10K |
-
----
-
-## 📊 **Advanced Pipeline Features**
-
-### ✅ **Smart Triggering**
-```yaml
-# Runs on:
-- Push to main/develop
-- Pull requests  
-- Weekly scheduled scans (Mondays 2 AM)
-- Manual dispatch with options
+```text
+.
+├── .github/          # CI/CD and security workflows
+├── contracts/        # Solidity contracts when applicable
+├── programs/         # Solana/Anchor programs when applicable
+├── tools/            # Security-tool configuration
+├── .env.example      # Example environment configuration
+├── Dockerfile        # Containerized environment
+├── Anchor.toml       # Anchor configuration
+└── Cargo.toml        # Rust workspace configuration
 ```
 
-### 📋 **Professional Reporting**
-- **GitHub Security Tab** integration (SARIF format)
-- **PR Comments** with findings summary
-- **Comprehensive reports** in multiple formats
-- **90-day retention** for historical analysis
+The exact directories used depend on the project being audited.
 
-### ⚙️ **Customizable Analysis**
-```yaml
-# Deep scan options:
-workflow_dispatch:
-  inputs:
-    analysis_depth: 'comprehensive'    # standard/deep/comprehensive
-    target_contract: 'MyContract.sol'  # Focus specific contract
-```
+## Quick start
 
----
-
-## 🔧 **Configuration Files**
-
-```
-tools/
-├── slither-config.json      # 90+ detectors configured
-├── mythril-config.yaml      # Symbolic execution settings  
-├── echidna-config.yaml      # Fuzzing parameters
-└── gitleaks-config.toml     # Secret detection rules
-```
-
-Each tool is pre-configured for maximum bug detection while minimizing false positives.
-
----
-
-## 🎯 **Bug Bounty Platform Optimization**
-
-### **Code4rena Ready**
-- Matches C4 analysis standards
-- Includes gas optimization checks
-- Generates audit-quality reports
-
-### **Immunefi Compatible**  
-- Critical vulnerability focus
-- PoC-ready findings
-- Severity classification
-
-### **Professional Output**
-- Detailed vulnerability descriptions
-- Impact assessments
-- Remediation suggestions
-
----
-
-## � **Workflow Examples**
-
-### Standard Analysis (Every Push)
 ```bash
-git add contracts/MyContract.sol
-git commit -m "Add new contract"
-git push origin main
-# → Automatic security analysis triggers
+git clone https://github.com/Wonderadroit/solana-devsecops-template.git
+cd solana-devsecops-template
 ```
 
-### Deep Security Scan (Manual)
-```bash
-gh workflow run security-scan.yml \
-  --ref main \
-  -f analysis_depth=comprehensive \
-  -f target_contract=contracts/Treasury.sol
+Review the setup documentation before running workflows:
+
+- `AUTOMATED_SETUP.md`
+- `API_KEYS_GUIDE.md`
+- `INTEGRATION_GUIDE.md`
+- `MULTI_CONTRACT_SETUP.md`
+
+## CI/CD workflow
+
+```text
+Code → Build/Test → Static Analysis → Security Checks → Report
 ```
 
-### PR Review Mode
-```bash
-# Create PR → Gets automatic security review
-# Results posted as PR comment with findings
-```
+GitHub Actions can run checks automatically on repository events or manually when deeper analysis is required.
+
+## Security philosophy
+
+Automated scanners are **signals, not proof**. Findings should be reviewed, reproduced where possible, and assessed against the application's actual trust boundaries, invariants, and business logic.
+
+This template does not guarantee vulnerability detection or bug-bounty eligibility.
+
+## Responsible use
+
+Use this tooling only against code and systems you are authorized to assess. Do not test third-party targets without permission.
+
+## Status
+
+An evolving security-engineering template. Configuration and workflow changes are expected as the project develops.
+
+## License
+
+MIT
 
 ---
 
-## 📈 **Success Metrics**
-
-This template has helped hunters find:
-- ✅ Reentrancy vulnerabilities worth $50K+
-- ✅ Access control bugs worth $25K+  
-- ✅ Integer overflow issues worth $15K+
-- ✅ Gas optimization savings worth $5K+
-
----
-
-## �️ **Pro Tips for Bug Bounty Success**
-
-1. **Run comprehensive scans** - Each tool finds different bug classes
-2. **Review ALL findings** - Even "low" severity can be valuable
-3. **Focus on business logic** - Custom checks often find unique bugs
-4. **Write PoCs immediately** - Validate findings with test cases
-5. **Track patterns** - Build your own detection rules over time
-
----
-
-## 🚨 **Ready to Hunt?**
-
-This pipeline transforms your GitHub repo into a **professional bug bounty hunting machine**. Every push runs a comprehensive security analysis that would cost thousands of dollars if done manually.
-
-**Start hunting, start earning! 🐛💰**
-
----
-
-### 📄 License
-MIT - Use freely for your bug bounty adventures!
+**Author:** [Wonderadroit](https://github.com/Wonderadroit)
