@@ -12,6 +12,7 @@ A reusable security-engineering template for smart-contract projects spanning **
 - SARIF-compatible reporting
 - Configurable analysis depth and target selection
 - Local and CI-oriented workflows
+- Multi-chain Rust/Solidity validation
 
 ## Tooling
 
@@ -22,29 +23,28 @@ A reusable security-engineering template for smart-contract projects spanning **
 | Security | Semgrep · Echidna · Gitleaks |
 | Automation | GitHub Actions |
 
-## Workflow
+## Validation model
 
 ```text
 Source → Build/Test → Static Analysis → Security Checks → Reports → Human Review
 ```
 
-Automated tools provide signals; security conclusions still require contextual review, reproduction, and understanding of application behavior and trust boundaries.
+The repository now separates **gating validation** from **security-analysis reporting**. The baseline CI checks project integrity, while the security audit workflow produces findings for review without pretending that automated scanners prove an audit is complete.
 
 ## Repository structure
 
 ```text
 .
 ├── .github/          # CI/CD and security workflows
-├── contracts/        # Solidity contracts when applicable
-├── programs/         # Solana/Anchor programs when applicable
-├── tools/             # Security-tool configuration
-├── .env.example       # Example environment configuration
-├── Dockerfile         # Containerized environment
-├── Anchor.toml        # Anchor configuration
-└── Cargo.toml         # Rust workspace configuration
+├── contracts/        # Solidity contracts and security fixtures
+├── programs/         # Solana/Anchor programs
+├── fuzz/             # Fuzzing configuration and targets
+├── docs/             # Engineering and security documentation
+├── .env.example      # Example environment configuration
+├── Dockerfile        # Containerized environment
+├── Anchor.toml       # Anchor configuration
+└── Cargo.toml        # Rust workspace configuration
 ```
-
-The exact directories used depend on the project being assessed.
 
 ## Quick start
 
@@ -59,12 +59,19 @@ Review the repository documentation before running workflows:
 - `API_KEYS_GUIDE.md`
 - `INTEGRATION_GUIDE.md`
 - `MULTI_CONTRACT_SETUP.md`
+- `PIPELINE_ASSESSMENT.md`
 
-## Security boundaries
+## Security posture
 
-This project is a **security-engineering template**, not a guarantee of vulnerability detection, audit completeness, or bug-bounty eligibility. Automated findings should be validated before being treated as confirmed issues.
+Security automation is treated as an engineering aid, not an oracle. Findings require contextual review, reproduction, and understanding of application behavior and trust boundaries.
+
+The public portfolio intentionally does **not** include an automatic workflow that generates exploit contracts from scanner findings. Security testing remains focused on authorized analysis, validation, and reproducible reporting.
 
 Use the tooling only against code and systems you are authorized to assess.
+
+## CI and workflow security
+
+Workflows use read-only repository permissions where possible and are designed to separate validation from reporting. GitHub recommends explicitly limiting `GITHUB_TOKEN` permissions and hardening workflows against compromised actions and runners. urlGitHub Actions security guidancehttps://docs.github.com/en/actions/how-tos/secure-your-work
 
 ## Status
 
