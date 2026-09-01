@@ -29,7 +29,7 @@ A reusable security-engineering template for smart-contract projects spanning **
 Source → Build/Test → Static Analysis → Security Checks → Reports → Human Review
 ```
 
-The repository now separates **gating validation** from **security-analysis reporting**. The baseline CI checks project integrity, while the security audit workflow produces findings for review without pretending that automated scanners prove an audit is complete.
+The repository separates **gating validation** from **security-analysis reporting**. Baseline CI checks project integrity, while the security audit workflow produces findings for review without pretending that automated scanners prove an audit is complete.
 
 ## Repository structure
 
@@ -71,7 +71,7 @@ Use the tooling only against code and systems you are authorized to assess.
 
 ## CI and workflow security
 
-Workflows use read-only repository permissions where possible and are designed to separate validation from reporting. GitHub recommends explicitly limiting `GITHUB_TOKEN` permissions and hardening workflows against compromised actions and runners. urlGitHub Actions security guidancehttps://docs.github.com/en/actions/how-tos/secure-your-work
+Workflows use read-only repository permissions where possible and are designed to separate validation from reporting. See GitHub's [Actions security guidance](https://docs.github.com/en/actions/how-tos/secure-your-work) for workflow-hardening practices.
 
 ## Status
 
